@@ -3,19 +3,19 @@
  <br>
 </h1>
 <p align="center">
- <a href="https://github.com/webrtc-rs/sctp/actions"> 
+ <a href="https://github.com/webrtc-rs/sctp/actions">
   <img src="https://github.com/webrtc-rs/sctp/workflows/cargo/badge.svg">
- </a> 
- <a href="https://codecov.io/gh/webrtc-rs/sctp"> 
+ </a>
+ <a href="https://codecov.io/gh/webrtc-rs/sctp">
   <img src="https://codecov.io/gh/webrtc-rs/sctp/branch/main/graph/badge.svg">
  </a>
- <a href="https://deps.rs/repo/github/webrtc-rs/sctp"> 
+ <a href="https://deps.rs/repo/github/webrtc-rs/sctp">
   <img src="https://deps.rs/repo/github/webrtc-rs/sctp/status.svg">
  </a>
- <a href="https://crates.io/crates/sctp-async"> 
+ <a href="https://crates.io/crates/sctp-async">
   <img src="https://img.shields.io/crates/v/sctp-async.svg">
- </a> 
- <a href="https://docs.rs/sctp-async"> 
+ </a>
+ <a href="https://docs.rs/sctp-async">
   <img src="https://docs.rs/sctp-async/badge.svg">
  </a>
  <a href="https://doc.rust-lang.org/1.6.0/complement-project-faq.html#why-dual-mitasl2-license">
@@ -26,5 +26,5 @@
  </a>
 </p>
 <p align="center">
- A pure Rust implementation of SCTP. Rewrite <a href="https://github.com/pion/sctp/releases/tag/v1.7.12">Pion</a> SCTP in Rust
+ A pure Rust implementation of SCTP in Sans-IO style.
 </p>
