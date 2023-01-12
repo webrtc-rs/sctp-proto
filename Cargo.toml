@@ -2,7 +2,7 @@
 name = "sctp-proto"
 version = "0.1.1"
 authors = ["Rain Liu <yliu@webrtc.rs>"]
-edition = "2018"
+edition = "2021"
 description = "State machine for the SCTP protocol"
 license = "MIT/Apache-2.0"
 documentation = "https://docs.rs/sctp-proto"
@@ -10,7 +10,6 @@ homepage = "https://webrtc.rs"
 repository = "https://github.com/webrtc-rs/sctp"
 keywords = ["sctp"]
 categories = [ "network-programming", "asynchronous" ]
-workspace = ".."
 
 [dependencies]
 arbitrary = { version = "1.0.1", features = ["derive"], optional = true }
