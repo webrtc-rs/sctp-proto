@@ -6,6 +6,7 @@ fn create_association(config: TransportConfig) -> Association {
     Association::new(
         None,
         Arc::new(config),
+        1400,
         0,
         SocketAddr::from_str("0.0.0.0:0").unwrap(),
         None,

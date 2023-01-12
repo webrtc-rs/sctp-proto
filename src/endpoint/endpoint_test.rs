@@ -2193,7 +2193,7 @@ fn test_association_handle_packet_before_init() -> Result<()> {
 
         //let (a_conn, charlie_conn) = pipe();
         let config = Arc::new(TransportConfig::default());
-        let mut a = Association::new(None, config, 0, remote, None, Instant::now());
+        let mut a = Association::new(None, config, 1400, 0, remote, None, Instant::now());
 
         let packet = packet.marshal()?;
         a.handle_event(AssociationEvent(AssociationEventInner::Datagram(

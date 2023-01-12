@@ -281,6 +281,7 @@ impl Endpoint {
         let conn = Association::new(
             server_config,
             transport_config,
+            self.config.get_max_payload_size(),
             local_aid,
             remote_addr,
             local_ip,
