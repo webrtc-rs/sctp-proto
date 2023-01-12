@@ -488,11 +488,7 @@ impl StreamState {
             buffered_amount_low,
         );
 
-        if from_amount > buffered_amount_low && new_amount <= buffered_amount_low {
-            true
-        } else {
-            false
-        }
+        from_amount > buffered_amount_low && new_amount <= buffered_amount_low
     }
 
     pub(crate) fn get_num_bytes_in_reassembly_queue(&self) -> usize {

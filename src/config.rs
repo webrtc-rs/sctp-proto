@@ -95,7 +95,7 @@ impl EndpointConfig {
     /// Create a default config
     pub fn new() -> Self {
         let aid_factory: fn() -> Box<dyn AssociationIdGenerator> =
-            || Box::new(RandomAssociationIdGenerator::default());
+            || Box::<RandomAssociationIdGenerator>::default();
         Self {
             max_payload_size: INITIAL_MTU - (COMMON_HEADER_SIZE + DATA_CHUNK_HEADER_SIZE),
             aid_generator_factory: Arc::new(aid_factory),
