@@ -14,7 +14,7 @@
 
 #![warn(rust_2018_idioms)]
 #![allow(dead_code)]
-#![allow(clippy::too_many_arguments)]
+#![allow(clippy::bool_to_int_with_if)]
 
 use bytes::Bytes;
 use std::time::Instant;

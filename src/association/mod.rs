@@ -311,7 +311,7 @@ impl Association {
         // RFC 4690 Sec 7.2.1
         // The initial cwnd before DATA transmission or after a sufficiently
         // long idle period MUST be set to min(4*MTU, max (2*MTU, 4380bytes)).
-        let cwnd = std::cmp::min(4 * mtu, std::cmp::max(2 * mtu, 4380));
+        let cwnd = (2 * mtu).clamp(4380, 4 * mtu);
         let mut tsn = random::<u32>();
         if tsn == 0 {
             tsn += 1;

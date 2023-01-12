@@ -268,6 +268,7 @@ impl Endpoint {
         Some((ch, conn))
     }
 
+    #[allow(clippy::too_many_arguments)]
     fn add_association(
         &mut self,
         remote_aid: AssociationId,
