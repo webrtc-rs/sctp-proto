@@ -13,9 +13,7 @@ use crate::chunk::{
     chunk_shutdown_complete::ChunkShutdownComplete, chunk_type::CT_FORWARD_TSN, Chunk,
     ErrorCauseUnrecognizedChunkType,
 };
-use crate::config::{
-    ServerConfig, TransportConfig, COMMON_HEADER_SIZE, DATA_CHUNK_HEADER_SIZE, INITIAL_MTU,
-};
+use crate::config::{ServerConfig, TransportConfig, COMMON_HEADER_SIZE, DATA_CHUNK_HEADER_SIZE};
 use crate::error::{Error, Result};
 use crate::packet::{CommonHeader, Packet};
 use crate::param::{
@@ -296,6 +294,7 @@ impl Association {
     pub(crate) fn new(
         server_config: Option<Arc<ServerConfig>>,
         config: Arc<TransportConfig>,
+        max_payload_size: u32,
         local_aid: AssociationId,
         remote_addr: SocketAddr,
         local_ip: Option<IpAddr>,
@@ -307,7 +306,10 @@ impl Association {
             Side::Client
         };
 
-        let mtu = INITIAL_MTU;
+        // It's a bit strange, but we're going backwards from the calculation in
+        // config.rs to get max_payload_size from INITIAL_MTU.
+        let mtu = max_payload_size + COMMON_HEADER_SIZE + DATA_CHUNK_HEADER_SIZE;
+
         // RFC 4690 Sec 7.2.1
         // The initial cwnd before DATA transmission or after a sufficiently
         // long idle period MUST be set to min(4*MTU, max (2*MTU, 4380bytes)).
@@ -324,7 +326,7 @@ impl Association {
             max_message_size: config.max_message_size(),
             my_max_num_outbound_streams: config.max_num_outbound_streams(),
             my_max_num_inbound_streams: config.max_num_inbound_streams(),
-            max_payload_size: INITIAL_MTU - (COMMON_HEADER_SIZE + DATA_CHUNK_HEADER_SIZE),
+            max_payload_size,
 
             rto_mgr: RtoManager::new(),
             timers: TimerTable::new(),
