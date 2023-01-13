@@ -122,14 +122,20 @@ impl<'a> Stream<'a> {
         self.write_source(&mut ByteSlice::from_slice(p), ppi)
     }
 
-    /// Send data on the given stream
+    /// Send data on the given stream.
+    ///
+    /// Uses the deafult payload protocol (PPI).
     ///
     /// Returns the number of bytes successfully written.
     pub fn write(&mut self, data: &[u8]) -> Result<usize> {
-        self.write_source(
-            &mut ByteSlice::from_slice(data),
-            self.get_default_payload_type()?,
-        )
+        self.write_with_ppi(data, self.get_default_payload_type()?)
+    }
+
+    /// Send data on the given stream, with a specific payload protocol.
+    ///
+    /// Returns the number of bytes successfully written.
+    pub fn write_with_ppi(&mut self, data: &[u8], ppi: PayloadProtocolIdentifier) -> Result<usize> {
+        self.write_source(&mut ByteSlice::from_slice(data), ppi)
     }
 
     /// write writes len(p) bytes from p with the default Payload Protocol Identifier
