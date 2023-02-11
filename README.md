@@ -6,9 +6,6 @@
  <a href="https://github.com/webrtc-rs/sctp-proto/actions">
   <img src="https://github.com/webrtc-rs/sctp-proto/workflows/cargo/badge.svg">
  </a>
- <a href="https://codecov.io/gh/webrtc-rs/sctp-proto">
-  <img src="https://codecov.io/gh/webrtc-rs/sctp-proto/branch/main/graph/badge.svg">
- </a>
  <a href="https://deps.rs/repo/github/webrtc-rs/sctp-proto">
   <img src="https://deps.rs/repo/github/webrtc-rs/sctp-proto/status.svg">
  </a>
@@ -26,5 +23,5 @@
  </a>
 </p>
 <p align="center">
- A pure Rust implementation of SCTP in Sans-IO style.
+ A pure Rust implementation of SCTP in Sans-IO style
 </p>

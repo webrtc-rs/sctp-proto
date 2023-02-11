@@ -59,7 +59,6 @@ pub use crate::queue::reassembly_queue::{Chunk, Chunks};
 pub(crate) mod util;
 
 /// Whether an endpoint was the initiator of an association
-#[cfg_attr(feature = "arbitrary", derive(Arbitrary))]
 #[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Side {
     /// The initiator of an association

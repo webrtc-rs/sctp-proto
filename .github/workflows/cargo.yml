@@ -2,9 +2,9 @@ name: cargo
 
 on:
   push:
-    branches: [ main, proto ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, proto ]
+    branches: [ main ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
