@@ -1889,7 +1889,6 @@ impl Association {
                     reconfig_response_sequence_number: p.reconfig_request_sequence_number,
                     sender_last_tsn: tsn,
                     stream_identifiers: sis_to_reset,
-                    ..Default::default()
                 })),
                 ..Default::default()
             };

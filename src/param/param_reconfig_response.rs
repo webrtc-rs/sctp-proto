@@ -5,6 +5,7 @@ use std::fmt;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 #[repr(C)]
+#[derive(Default)]
 pub(crate) enum ReconfigResult {
     SuccessNop = 0,
     SuccessPerformed = 1,
@@ -13,14 +14,11 @@ pub(crate) enum ReconfigResult {
     ErrorRequestAlreadyInProgress = 4,
     ErrorBadSequenceNumber = 5,
     InProgress = 6,
+    #[default]
     Unknown,
 }
 
-impl Default for ReconfigResult {
-    fn default() -> Self {
-        ReconfigResult::Unknown
-    }
-}
+
 
 impl fmt::Display for ReconfigResult {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

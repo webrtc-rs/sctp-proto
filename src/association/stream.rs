@@ -53,8 +53,10 @@ pub enum StreamEvent {
 
 /// Reliability type for stream
 #[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Default)]
 pub enum ReliabilityType {
     /// ReliabilityTypeReliable is used for reliable transmission
+    #[default]
     Reliable = 0,
     /// ReliabilityTypeRexmit is used for partial reliability by retransmission count
     Rexmit = 1,
@@ -62,11 +64,7 @@ pub enum ReliabilityType {
     Timed = 2,
 }
 
-impl Default for ReliabilityType {
-    fn default() -> Self {
-        ReliabilityType::Reliable
-    }
-}
+
 
 impl fmt::Display for ReliabilityType {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -320,7 +318,9 @@ impl<'a> Stream<'a> {
 }
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
+#[derive(Default)]
 pub enum RecvSendState {
+    #[default]
     Closed = 0,
     Readable = 1,
     Writable = 2,
@@ -338,11 +338,7 @@ impl From<u8> for RecvSendState {
     }
 }
 
-impl Default for RecvSendState {
-    fn default() -> Self {
-        RecvSendState::Closed
-    }
-}
+
 
 /// StreamState represents the state of an SCTP stream
 #[derive(Default, Debug)]

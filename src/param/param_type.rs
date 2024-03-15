@@ -3,6 +3,7 @@ use std::fmt;
 /// paramType represents a SCTP INIT/INITACK parameter
 #[derive(Debug, Copy, Clone, PartialEq)]
 #[repr(C)]
+#[derive(Default)]
 pub(crate) enum ParamType {
     HeartbeatInfo = 1,
     /// Heartbeat Info [RFCRFC4960]
@@ -56,14 +57,11 @@ pub(crate) enum ParamType {
     /// Success Indication (0xC005) [RFCRFC5061]
     AdaptLayerInd = 49158,
     /// Adaptation Layer Indication (0xC006) [RFCRFC5061]
+    #[default]
     Unknown,
 }
 
-impl Default for ParamType {
-    fn default() -> Self {
-        ParamType::Unknown
-    }
-}
+
 
 impl fmt::Display for ParamType {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

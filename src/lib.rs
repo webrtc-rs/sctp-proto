@@ -60,18 +60,16 @@ pub(crate) mod util;
 
 /// Whether an endpoint was the initiator of an association
 #[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash)]
+#[derive(Default)]
 pub enum Side {
     /// The initiator of an association
+    #[default]
     Client = 0,
     /// The acceptor of an association
     Server = 1,
 }
 
-impl Default for Side {
-    fn default() -> Self {
-        Side::Client
-    }
-}
+
 
 impl fmt::Display for Side {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
