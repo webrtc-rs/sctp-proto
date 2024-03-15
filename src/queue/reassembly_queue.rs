@@ -334,7 +334,7 @@ impl ReassemblyQueue {
                 return None;
             }
             if chunks.ssn == self.next_ssn {
-                self.next_ssn += 1;
+                self.next_ssn = self.next_ssn.wrapping_add(1);
             }
             self.ordered.remove(0)
         } else {
@@ -363,7 +363,7 @@ impl ReassemblyQueue {
 
         // Finally, forward next_ssn
         if sna16lte(self.next_ssn, last_ssn) {
-            self.next_ssn = last_ssn + 1;
+            self.next_ssn = last_ssn.wrapping_add(1);
         }
     }
 
