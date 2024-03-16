@@ -52,20 +52,15 @@ pub enum StreamEvent {
 }
 
 /// Reliability type for stream
-#[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq, Default)]
 pub enum ReliabilityType {
     /// ReliabilityTypeReliable is used for reliable transmission
+    #[default]
     Reliable = 0,
     /// ReliabilityTypeRexmit is used for partial reliability by retransmission count
     Rexmit = 1,
     /// ReliabilityTypeTimed is used for partial reliability by retransmission duration
     Timed = 2,
-}
-
-impl Default for ReliabilityType {
-    fn default() -> Self {
-        ReliabilityType::Reliable
-    }
 }
 
 impl fmt::Display for ReliabilityType {
@@ -319,8 +314,9 @@ impl<'a> Stream<'a> {
     }
 }
 
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Default)]
 pub enum RecvSendState {
+    #[default]
     Closed = 0,
     Readable = 1,
     Writable = 2,
@@ -335,12 +331,6 @@ impl From<u8> for RecvSendState {
             3 => RecvSendState::ReadWritable,
             _ => RecvSendState::Closed,
         }
-    }
-}
-
-impl Default for RecvSendState {
-    fn default() -> Self {
-        RecvSendState::Closed
     }
 }
 

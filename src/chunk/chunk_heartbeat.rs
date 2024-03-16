@@ -1,9 +1,6 @@
 use super::{chunk_header::*, chunk_type::*, *};
 use crate::param::{param_header::*, param_type::*, *};
 
-use bytes::{Bytes, BytesMut};
-use std::fmt;
-
 ///chunkHeartbeat represents an SCTP Chunk of type HEARTBEAT
 ///
 ///An endpoint should send this chunk to its peer endpoint to probe the

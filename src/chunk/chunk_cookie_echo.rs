@@ -1,8 +1,5 @@
 use super::{chunk_header::*, chunk_type::*, *};
 
-use bytes::{Bytes, BytesMut};
-use std::fmt;
-
 /// CookieEcho represents an SCTP Chunk of type CookieEcho
 ///
 ///  0                   1                   2                   3

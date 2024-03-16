@@ -1,7 +1,7 @@
 use super::{param_header::*, param_type::*, *};
 use crate::chunk::chunk_type::*;
 
-use bytes::{Buf, BufMut, Bytes, BytesMut};
+use bytes::BufMut;
 
 #[derive(Default, Debug, Clone, PartialEq)]
 pub(crate) struct ParamChunkList {

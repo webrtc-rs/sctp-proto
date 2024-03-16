@@ -104,7 +104,6 @@ fn test_abort_chunk_many_error_causes() -> Result<()> {
 //chunk_error_test
 ///////////////////////////////////////////////////////////////////
 use super::chunk_error::*;
-use bytes::BufMut;
 use lazy_static::lazy_static;
 
 const CHUNK_FLAGS: u8 = 0x00;
@@ -500,7 +499,7 @@ fn test_init_chunk() -> Result<()> {
             3899461680u32, c.initial_tsn
         );
     } else {
-        assert!(false, "Failed to cast Chunk -> Init");
+        panic!("Failed to cast Chunk -> Init");
     }
 
     Ok(())
@@ -627,7 +626,7 @@ fn test_init_marshal_unmarshal() -> Result<()> {
             123, c.initial_tsn
         );
     } else {
-        assert!(false, "Failed to cast Chunk -> InitAck");
+        panic!("Failed to cast Chunk -> InitAck");
     }
 
     Ok(())
@@ -694,7 +693,7 @@ fn test_reconfig_chunk() -> Result<()> {
             "unexpected stream identifier"
         );
     } else {
-        assert!(false, "Failed to cast Chunk -> Reconfig");
+        panic!("Failed to cast Chunk -> Reconfig");
     }
 
     Ok(())
@@ -717,7 +716,7 @@ fn test_forward_tsn_chunk() -> Result<()> {
             c.new_cumulative_tsn
         );
     } else {
-        assert!(false, "Failed to cast Chunk -> Forward TSN");
+        panic!("Failed to cast Chunk -> Forward TSN");
     }
 
     Ok(())

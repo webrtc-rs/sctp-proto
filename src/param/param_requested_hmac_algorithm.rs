@@ -1,7 +1,6 @@
 use super::{param_header::*, param_type::*, *};
 
-use bytes::{Buf, BufMut, Bytes, BytesMut};
-use std::fmt;
+use bytes::BufMut;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 #[repr(C)]

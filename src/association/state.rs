@@ -1,8 +1,9 @@
 use std::fmt;
 
 /// association state enums
-#[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq, Default)]
 pub(crate) enum AssociationState {
+    #[default]
     Closed = 0,
     CookieWait = 1,
     CookieEchoed = 2,
@@ -11,12 +12,6 @@ pub(crate) enum AssociationState {
     ShutdownPending = 5,
     ShutdownReceived = 6,
     ShutdownSent = 7,
-}
-
-impl Default for AssociationState {
-    fn default() -> Self {
-        AssociationState::Closed
-    }
 }
 
 impl From<u8> for AssociationState {
@@ -63,16 +58,12 @@ impl AssociationState {
 }
 
 /// ack mode (for testing)
-#[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq, Default)]
 pub(crate) enum AckMode {
+    #[default]
     Normal,
     NoDelay,
     AlwaysDelay,
-}
-impl Default for AckMode {
-    fn default() -> Self {
-        AckMode::Normal
-    }
 }
 
 impl fmt::Display for AckMode {
@@ -87,17 +78,12 @@ impl fmt::Display for AckMode {
 }
 
 /// ack transmission state
-#[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq, Default)]
 pub(crate) enum AckState {
-    Idle,      // ack timer is off
+    #[default]
+    Idle, // ack timer is off
     Immediate, // will send ack immediately
     Delay,     // ack timer is on (ack is being delayed)
-}
-
-impl Default for AckState {
-    fn default() -> Self {
-        AckState::Idle
-    }
 }
 
 impl fmt::Display for AckState {

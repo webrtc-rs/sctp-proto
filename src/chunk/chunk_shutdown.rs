@@ -1,8 +1,5 @@
 use super::{chunk_header::*, chunk_type::*, *};
 
-use bytes::{Buf, BufMut, Bytes, BytesMut};
-use std::fmt;
-
 ///chunkShutdown represents an SCTP Chunk of type chunkShutdown
 ///
 ///0                   1                   2                   3

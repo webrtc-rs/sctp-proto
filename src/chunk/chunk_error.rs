@@ -1,8 +1,5 @@
 use super::{chunk_header::*, chunk_type::*, *};
 
-use bytes::{Bytes, BytesMut};
-use std::fmt;
-
 ///Operation Error (ERROR) (9)
 ///
 ///An endpoint sends this chunk to its peer endpoint to notify it of

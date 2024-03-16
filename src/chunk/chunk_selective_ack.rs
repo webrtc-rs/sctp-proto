@@ -1,8 +1,5 @@
 use super::{chunk_header::*, chunk_type::*, *};
 
-use bytes::{Buf, BufMut, Bytes, BytesMut};
-use std::fmt;
-
 ///chunkSelectiveAck represents an SCTP Chunk of type SACK
 ///
 ///This chunk is sent to the peer endpoint to acknowledge received DATA

@@ -1,8 +1,5 @@
 use super::{chunk_header::*, chunk_type::*, *};
 
-use bytes::{Bytes, BytesMut};
-use std::fmt;
-
 ///Abort represents an SCTP Chunk of type ABORT
 ///
 ///The ABORT chunk is sent to the peer of an association to close the

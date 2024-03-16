@@ -1,7 +1,5 @@
 use super::{param_header::*, param_type::*, *};
 
-use bytes::{Bytes, BytesMut};
-
 #[derive(Default, Debug, Clone, PartialEq)]
 pub(crate) struct ParamHeartbeatInfo {
     pub(crate) heartbeat_information: Bytes,

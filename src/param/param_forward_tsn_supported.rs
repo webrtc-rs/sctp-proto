@@ -1,7 +1,5 @@
 use super::{param_header::*, param_type::*, *};
 
-use bytes::{Bytes, BytesMut};
-
 /// At the initialization of the association, the sender of the INIT or
 /// INIT ACK chunk MAY include this OPTIONAL parameter to inform its peer
 /// that it is able to support the Forward TSN chunk
