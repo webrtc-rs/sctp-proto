@@ -1,8 +1,5 @@
 use super::{chunk_type::*, *};
 
-use bytes::{Buf, BufMut, Bytes, BytesMut};
-use std::fmt;
-
 ///chunkHeader represents a SCTP Chunk header, defined in https://tools.ietf.org/html/rfc4960#section-3.2
 ///The figure below illustrates the field format for the chunks to be
 ///transmitted in the SCTP packet.  Each chunk is formatted with a Chunk

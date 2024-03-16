@@ -59,8 +59,7 @@ pub use crate::queue::reassembly_queue::{Chunk, Chunks};
 pub(crate) mod util;
 
 /// Whether an endpoint was the initiator of an association
-#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Default)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Default)]
 pub enum Side {
     /// The initiator of an association
     #[default]
@@ -68,8 +67,6 @@ pub enum Side {
     /// The acceptor of an association
     Server = 1,
 }
-
-
 
 impl fmt::Display for Side {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

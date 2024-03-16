@@ -1,7 +1,5 @@
 use super::{chunk_header::*, chunk_type::*, *};
 
-use bytes::{Buf, BufMut, Bytes, BytesMut};
-use std::fmt;
 use std::time::Instant;
 
 pub(crate) const PAYLOAD_DATA_ENDING_FRAGMENT_BITMASK: u8 = 1;
@@ -25,8 +23,6 @@ pub enum PayloadProtocolIdentifier {
     #[default]
     Unknown,
 }
-
-
 
 impl fmt::Display for PayloadProtocolIdentifier {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

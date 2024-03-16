@@ -3,9 +3,6 @@ use crate::param::param_type::ParamType;
 use crate::param::{param_header::*, *};
 use crate::util::get_padding_size;
 
-use bytes::{Bytes, BytesMut};
-use std::fmt;
-
 ///chunkHeartbeatAck represents an SCTP Chunk of type HEARTBEAT ACK
 ///
 ///An endpoint should send this chunk to its peer endpoint as a response
