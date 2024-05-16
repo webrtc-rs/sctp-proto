@@ -1,7 +1,7 @@
 use crate::shared::AssociationId;
 
 use bytes::Bytes;
-use crc::{Crc, CRC_32_ISCSI};
+use crc::{Crc, Table, CRC_32_ISCSI};
 use std::time::Duration;
 
 /// This function is non-inline to prevent the optimizer from looking inside it.
@@ -72,7 +72,7 @@ impl AssociationIdGenerator for RandomAssociationIdGenerator {
     }
 }
 
-const PADDING_MULTIPLE: usize = 4;
+pub(crate) const PADDING_MULTIPLE: usize = 4;
 
 pub(crate) fn get_padding_size(len: usize) -> usize {
     (PADDING_MULTIPLE - (len % PADDING_MULTIPLE)) % PADDING_MULTIPLE
@@ -81,11 +81,11 @@ pub(crate) fn get_padding_size(len: usize) -> usize {
 /// Allocate and zero this data once.
 /// We need to use it for the checksum and don't want to allocate/clear each time.
 pub(crate) static FOUR_ZEROES: Bytes = Bytes::from_static(&[0, 0, 0, 0]);
+pub(crate) const ISCSI_CRC: Crc<u32, Table<16>> = Crc::<u32, Table<16>>::new(&CRC_32_ISCSI);
 
 /// Fastest way to do a crc32 without allocating.
 pub(crate) fn generate_packet_checksum(raw: &Bytes) -> u32 {
-    let hasher = Crc::<u32>::new(&CRC_32_ISCSI);
-    let mut digest = hasher.digest();
+    let mut digest = ISCSI_CRC.digest();
     digest.update(&raw[0..8]);
     digest.update(&FOUR_ZEROES[..]);
     digest.update(&raw[12..]);
