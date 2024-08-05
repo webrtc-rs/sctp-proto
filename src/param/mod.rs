@@ -12,6 +12,7 @@ pub(crate) mod param_requested_hmac_algorithm;
 pub(crate) mod param_state_cookie;
 pub(crate) mod param_supported_extensions;
 pub(crate) mod param_type;
+pub(crate) mod param_uknown;
 
 use crate::error::{Error, Result};
 use crate::param::{
@@ -27,6 +28,8 @@ use param_type::*;
 
 use bytes::{Buf, Bytes, BytesMut};
 use std::{any::Any, fmt};
+
+use self::param_uknown::ParamUnknown;
 
 pub(crate) trait Param: fmt::Display + fmt::Debug {
     fn header(&self) -> ParamHeader;
@@ -57,7 +60,8 @@ pub(crate) fn build_param(raw_param: &Bytes) -> Result<Box<dyn Param + Send + Sy
         return Err(Error::ErrParamHeaderTooShort);
     }
     let reader = &mut raw_param.slice(..2);
-    let t: ParamType = reader.get_u16().into();
+    let raw_type = reader.get_u16();
+    let t: ParamType = raw_type.into();
     match t {
         ParamType::ForwardTsnSupp => Ok(Box::new(ParamForwardTsnSupported::unmarshal(raw_param)?)),
         ParamType::SupportedExt => Ok(Box::new(ParamSupportedExtensions::unmarshal(raw_param)?)),
@@ -68,6 +72,16 @@ pub(crate) fn build_param(raw_param: &Bytes) -> Result<Box<dyn Param + Send + Sy
         ParamType::HeartbeatInfo => Ok(Box::new(ParamHeartbeatInfo::unmarshal(raw_param)?)),
         ParamType::OutSsnResetReq => Ok(Box::new(ParamOutgoingResetRequest::unmarshal(raw_param)?)),
         ParamType::ReconfigResp => Ok(Box::new(ParamReconfigResponse::unmarshal(raw_param)?)),
-        _ => Err(Error::ErrParamTypeUnhandled),
+        _ => {
+            // According to RFC https://datatracker.ietf.org/doc/html/rfc4960#section-3.2.1
+            let stop_processing = ((raw_type >> 15) & 0x01) == 0;
+            if stop_processing {
+                Err(Error::ErrParamTypeUnhandled { typ: raw_type })
+            } else {
+                // We still might need to report this param as unrecognized.
+                // This depends on the context though.
+                Ok(Box::new(ParamUnknown::unmarshal(raw_param)?))
+            }
+        }
     }
 }
