@@ -1344,7 +1344,7 @@ impl Association {
     }
 
     fn handle_forward_tsn(&mut self, c: &ChunkForwardTsn) -> Result<Vec<Packet>> {
-        trace!("[{}] FwdTSN: {}", self.side, c.to_string());
+        trace!("[{}] FwdTSN: {}", self.side, c);
 
         if !self.use_forward_tsn {
             warn!("[{}] received FwdTSN but not enabled", self.side);
@@ -1981,11 +1981,7 @@ impl Association {
             bytes_queued += s.get_num_bytes_in_reassembly_queue() as u32;
         }
 
-        if bytes_queued >= self.max_receive_buffer_size {
-            0
-        } else {
-            self.max_receive_buffer_size - bytes_queued
-        }
+        self.max_receive_buffer_size.saturating_sub(bytes_queued)
     }
 
     /// gather_outbound gathers outgoing packets. The returned bool value set to
