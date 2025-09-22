@@ -74,8 +74,12 @@ impl Endpoint {
     ///
     /// Returns `Err` if the configuration is invalid.
     pub fn new(config: Arc<EndpointConfig>, server_config: Option<Arc<ServerConfig>>) -> Self {
+        let rng = {
+            let mut base = rand::rng();
+            StdRng::from_rng(&mut base)
+        };
         Self {
-            rng: StdRng::from_entropy(),
+            rng,
             transmits: VecDeque::new(),
             association_ids_init: HashMap::default(),
             association_ids: FxHashMap::default(),
