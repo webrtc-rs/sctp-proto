@@ -115,7 +115,7 @@ impl TestEndpoint {
             }
         }
 
-        while self.inbound.front().map_or(false, |x| x.0 <= now) {
+        while self.inbound.front().is_some_and(|x| x.0 <= now) {
             let (recv_time, ecn, packet) = self.inbound.pop_front().unwrap();
             if let Some((ch, event)) = self.endpoint.handle(recv_time, remote, None, ecn, packet) {
                 match event {
@@ -136,7 +136,7 @@ impl TestEndpoint {
 
         let mut endpoint_events: Vec<(AssociationHandle, EndpointEvent)> = vec![];
         for (ch, conn) in self.associations.iter_mut() {
-            if self.timeout.map_or(false, |x| x <= now) {
+            if self.timeout.is_some_and(|x| x <= now) {
                 self.timeout = None;
                 conn.handle_timeout(now);
             }
@@ -328,12 +328,12 @@ impl Pair {
     fn finish_connect(&mut self, client_ch: AssociationHandle, server_ch: AssociationHandle) {
         assert_matches!(
             self.client_conn_mut(client_ch).poll(),
-            Some(Event::Connected { .. })
+            Some(Event::Connected)
         );
 
         assert_matches!(
             self.server_conn_mut(server_ch).poll(),
-            Some(Event::Connected { .. })
+            Some(Event::Connected)
         );
     }
 
