@@ -16,7 +16,7 @@ bytes = "1.5.0"
 fxhash = "0.2.1"
 rand = "0.8.5"
 slab = "0.4.9"
-thiserror = "1.0.58"
+thiserror = "2.0.16"
 log = "0.4.21"
 crc = "3.2.1"
 
