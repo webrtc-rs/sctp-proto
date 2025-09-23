@@ -21,9 +21,9 @@ use crate::util::{AssociationIdGenerator, RandomAssociationIdGenerator};
 use crate::{EcnCodepoint, Payload, Transmit};
 
 use bytes::Bytes;
-use fxhash::FxHashMap;
 use log::{debug, trace};
 use rand::{rngs::StdRng, SeedableRng};
+use rustc_hash::FxHashMap;
 use slab::Slab;
 use thiserror::Error;
 

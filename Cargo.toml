@@ -13,8 +13,8 @@ categories = [ "network-programming", "asynchronous" ]
 
 [dependencies]
 bytes = "1.5.0"
-fxhash = "0.2.1"
 rand = "0.9.1"
+rustc-hash = "2.1.1"
 slab = "0.4.9"
 thiserror = "2.0.16"
 log = "0.4.21"
