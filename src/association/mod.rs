@@ -33,9 +33,9 @@ use timer::{RtoManager, Timer, TimerTable, ACK_INTERVAL};
 
 use crate::association::stream::RecvSendState;
 use bytes::Bytes;
-use fxhash::FxHashMap;
 use log::{debug, error, trace, warn};
 use rand::random;
+use rustc_hash::FxHashMap;
 use std::collections::{HashMap, VecDeque};
 use std::net::{IpAddr, SocketAddr};
 use std::str::FromStr;
